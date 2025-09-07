@@ -1,0 +1,200 @@
+:root {
+    --bg-color-light: #f4f7f6;
+    --container-bg-light: #ffffff;
+    --text-color-light: #333333;
+    --input-bg-light: #e9eef0;
+    --btn-bg-light: #4CAF50;
+    --btn-text-light: #ffffff;
+    --task-border-light: #e0e0e0;
+    --hover-bg-light: #f0f0f0;
+    --footer-text-light: #888;
+    --header-color-light: #4CAF50;
+}
+
+.dark-mode {
+    --bg-color-light: #121212;
+    --container-bg-light: #1e1e1e;
+    --text-color-light: #e0e0e0;
+    --input-bg-light: #2c2c2c;
+    --btn-bg-light: #6a1b9a;
+    --btn-text-light: #ffffff;
+    --task-border-light: #3c3c3c;
+    --hover-bg-light: #2c2c2c;
+    --footer-text-light: #666;
+    --header-color-light: #6a1b9a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    background-color: var(--container-bg-light);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--header-color-light);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode h1 {
+    color: var(--header-color-light);
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.input-container {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 2px solid var(--input-bg-light);
+    border-radius: 8px 0 0 8px;
+    font-size: 1rem;
+    background-color: var(--input-bg-light);
+    color: var(--text-color-light);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#task-input:focus {
+    border-color: #4CAF50;
+}
+
+.dark-mode #task-input:focus {
+    border-color: #6a1b9a;
+}
+
+#add-task-btn {
+    background-color: var(--btn-bg-light);
+    color: var(--btn-text-light);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#add-task-btn:hover {
+    background-color: #45a049;
+}
+
+.dark-mode #add-task-btn:hover {
+    background-color: #7b29ad;
+}
+
+#task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--container-bg-light);
+    border: 1px solid var(--task-border-light);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.task-item:hover {
+    background-color: var(--hover-bg-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 1rem;
+    cursor: pointer;
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--header-color-light);
+}
+
+.dark-mode .task-item input[type="checkbox"] {
+    accent-color: var(--header-color-light);
+}
+
+.task-text {
+    flex-grow: 1;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.task-text.completed {
+    text-decoration: line-through;
+    color: #888;
+    opacity: 0.7;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.delete-btn:hover {
+    color: #c0392b;
+}
+
+.footer {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--footer-text-light);
+}
+
+.footer p {
+    margin-bottom: 0.25rem;
+}
+
+.footer a {
+    color: var(--header-color-light); /* Changed to use the header color variable */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
