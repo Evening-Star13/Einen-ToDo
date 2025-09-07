@@ -3,12 +3,12 @@
     --container-bg-light: #ffffff;
     --text-color-light: #333333;
     --input-bg-light: #e9eef0;
-    --btn-bg-light: #4CAF50;
+    --btn-bg-light: #160dba;
     --btn-text-light: #ffffff;
     --task-border-light: #e0e0e0;
     --hover-bg-light: #f0f0f0;
     --footer-text-light: #888;
-    --header-color-light: #4CAF50;
+    --header-color-light: #160dba;
 }
 
 .dark-mode {
@@ -37,8 +37,8 @@ body {
     transition: background-color 0.3s, color 0.3s;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: top;
+    min-height: 20vh;
 }
 
 .app-container {
@@ -49,6 +49,7 @@ body {
     width: 100%;
     max-width: 500px;
     text-align: center;
+    margin-top: 10px;
 }
 
 header {
@@ -158,6 +159,7 @@ h1 {
     flex-grow: 1;
     text-align: left;
     font-size: 1.1rem;
+    cursor: pointer; /* make it clear that it's clickable */
 }
 
 .task-text.completed {
@@ -197,4 +199,36 @@ h1 {
 
 .footer a:hover {
     text-decoration: underline;
+}
+
+.footer-btn {
+    background-color: var(--btn-bg-light);
+    color: var(--btn-text-light);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.footer-btn:hover {
+    background-color: #45a049;
+}
+
+.dark-mode .footer-btn:hover {
+    background-color: #7b29ad;
+}
+
+.task-item-edit-input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 2px solid var(--input-bg-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--input-bg-light);
+    color: var(--text-color-light);
+    outline: none;
+    transition: border-color 0.3s;
 }

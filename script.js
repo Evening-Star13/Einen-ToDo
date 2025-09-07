@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskList = document.getElementById('task-list');
     const themeToggle = document.getElementById('theme-toggle');
     const currentYearSpan = document.getElementById('current-year');
+    const clearCompletedBtn = document.getElementById('clear-completed-btn');
 
     // Set the current year
     currentYearSpan.textContent = new Date().getFullYear();
@@ -49,6 +50,37 @@ document.addEventListener('DOMContentLoaded', () => {
             saveTasks();
         });
 
+        // Event listener for editing a task
+        li.querySelector('.task-text').addEventListener('click', (e) => {
+            const span = e.target;
+            const originalText = span.textContent;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'task-item-edit-input';
+            input.value = originalText;
+
+            span.replaceWith(input);
+            input.focus();
+
+            const saveEdit = () => {
+                const newText = input.value.trim();
+                if (newText !== '') {
+                    span.textContent = newText;
+                } else {
+                    span.textContent = originalText;
+                }
+                input.replaceWith(span);
+                saveTasks();
+            };
+
+            input.addEventListener('blur', saveEdit);
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    saveEdit();
+                }
+            });
+        });
+
         taskList.appendChild(li);
     }
 
@@ -62,12 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
+        updateClearButtonVisibility();
     }
 
     // Load tasks from local storage
     function loadTasks() {
         const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
         tasks.forEach(task => createTaskElement(task));
+        updateClearButtonVisibility();
     }
 
     // Toggle dark mode
@@ -87,6 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Update the visibility of the "Clear Completed" button
+    function updateClearButtonVisibility() {
+        const completedTasks = document.querySelectorAll('.task-text.completed').length;
+        if (completedTasks > 0) {
+            clearCompletedBtn.style.display = 'block';
+        } else {
+            clearCompletedBtn.style.display = 'none';
+        }
+    }
+
     // Event listeners for user actions
     addTaskBtn.addEventListener('click', addTask);
     taskInput.addEventListener('keypress', (e) => {
@@ -95,4 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     themeToggle.addEventListener('click', toggleTheme);
+    clearCompletedBtn.addEventListener('click', () => {
+        document.querySelectorAll('.task-item').forEach(item => {
+            if (item.querySelector('input[type="checkbox"]').checked) {
+                item.remove();
+            }
+        });
+        saveTasks();
+    });
 });
